@@ -15,5 +15,4 @@ export const X=(p:Props)=><Icon {...p}><path d="M5 5 19 19M19 5 5 19"/></Icon>;
 export const SchoolBag=(p:Props)=><Icon {...p}><path d="M9 5V2h6v3M7 20V8a3 3 0 0 1 3-3h4a3 3 0 0 1 3 3v12H7Z"/><path d="M9 10h6v5H9zM7 17h10M9 20v2m6-2v2M5 10v7m14-7v7"/></Icon>;
 export const Pencil=(p:Props)=><Icon {...p}><path d="m4 20 4.5-1 11-11a2.2 2.2 0 0 0-3.1-3.1l-11 11L4 20Zm10-12 3 3M4 20h5"/></Icon>;
 export const Kippah=(p:Props)=><Icon {...p}><path d="M3 16c0-6.5 3.6-10 9-10s9 3.5 9 10c-5.4 2-12.6 2-18 0Z"/><path d="M12 6v11M5 12c4 1.2 10 1.2 14 0"/></Icon>;
-export const Route=(p:Props)=><Icon {...p}><circle cx="5" cy="18" r="2"/><circle cx="19" cy="5" r="2"/><path d="M7 18h7a4 4 0 0 0 0-8h-3a3 3 0 0 1 0-5h6"/></Icon>;
 export const AlertMark=(p:Props)=><Icon {...p}><circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 4h.01"/></Icon>;
