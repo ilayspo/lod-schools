@@ -8,6 +8,7 @@ export type School = {city:City;events?:SchoolEvent[];populationMix?:PopulationM
 const city={label:'רשימת בתי הספר — עיריית לוד',url:'https://www.lod.muni.il/he/264/'};
 const goinfo=(code:number)=>({label:'נתוני משרד החינוך וראמ״ה ב־GoInfo, 2024/תשפ״ג–תשפ״ד',url:`https://goinfo.co.il/education/lod/${code}/`});
 const registration={label:'אזורי רישום — עיריית לוד',url:'https://www.lod.muni.il/he/263/'};
+export const schoolCoordinateSource = {label:'משרד החינוך — קואורדינטות שערי כניסה למוסדות חינוך',url:'https://data.gov.il/he/datasets/ministry_of_education/coordinates'};
 export const schools:School[]=[
 {city:'לוד',id:'maapilim',latitude:31.9475688625329,longitude:34.8880673915484,coordinateAccuracy:'גבוהה מאוד',name:'מעפילים',stream:'ממלכתי',address:'רחל אלתר 3, לוד',phone:'08-9229104',institutionCode:412825,studentCount:{value:548,year:2024},classCount:{value:22,year:2024},averageClassSize:{value:27.0,year:2024},dataYear:2024,grades:'א׳–ח׳',learningMetrics:[{label:'שפת אם',value:'נמוך במעט מהדומים',year:2023,grades:'ד׳–ו׳'},{label:'שפת אם',value:'כמו ממוצע הדומים',year:2023,grades:'ז׳–ח׳'}],climateComparisons:[{label:'יחסים ושייכות',value:'גבוה במעט מהדומים',year:2024,grades:'ד׳–ו׳'},{label:'מוגנות',value:'נמוך במעט מהדומים',year:2024,grades:'ד׳–ו׳'}],sources:[city,goinfo(412825)]},
 {city:'לוד',id:'levi-eshkol',latitude:31.9495919511681,longitude:34.8856700880889,coordinateAccuracy:'גבוהה מאוד',name:'לוי אשכול',stream:'ממלכתי',address:'אלפעל 4, לוד',phone:'08-9224421',institutionCode:413161,studentCount:{value:347,year:2024},classCount:{value:18,year:2024},averageClassSize:{value:25.6,year:2024},dataYear:2024,grades:'א׳–ח׳',learningMetrics:[{label:'שפת אם',value:'נמוך בהרבה מהדומים',year:2023,grades:'ד׳–ו׳'},{label:'שפת אם',value:'כמו ממוצע הדומים',year:2023,grades:'ז׳–ח׳'}],climateComparisons:[{label:'יחסים ושייכות',value:'גבוה בהרבה מהדומים',year:2024,grades:'ד׳–ו׳'},{label:'מוגנות',value:'גבוה בהרבה מהדומים',year:2024,grades:'ד׳–ו׳'}],sources:[city,goinfo(413161)]},
@@ -29,46 +30,47 @@ const ramlaSource={label:'רשימת בתי ספר יסודיים — עיריי
 const beerSource={label:'בתי ספר יסודיים — עיריית באר יעקב',url:'https://www.b-y.org.il/duplicated-1704189061/'};
 const ramlaData=(code:number)=>({label:'שקיפות בחינוך, משרד החינוך 2024 — GoInfo',url:`https://goinfo.co.il/education/ramla/${code}/`});
 const beerData=(code:number)=>({label:'שקיפות בחינוך, משרד החינוך 2024 — GoInfo',url:`https://goinfo.co.il/education/beer-yaakov/${code}/`});
-type CityRow={id:string;name:string;stream:Stream;address?:string;code?:number;students?:number;classes?:number;average?:number;grades?:string;gender?:string;characteristics?:string[];notes?:string;extraSource?:{label:string;url:string}};
+type CityRow={id:string;name:string;stream:Stream;address?:string;code?:number;students?:number;classes?:number;average?:number;grades?:string;gender?:string;characteristics?:string[];notes?:string;extraSource?:{label:string;url:string};coordinates?:[number,number];coordinateAccuracy?:string;coordinateSource?:{label:string;url:string}};
 const ramlaRows:CityRow[]=[
-{id:'ofek',name:'אופק',stream:'ממלכתי',address:'שמואל תמיר 3',code:414847,students:402,classes:16,average:25.1,grades:'א׳–ו׳'},
-{id:'ben-gurion',name:'בן גוריון',stream:'ממלכתי',address:'דוד רזיאל 32',code:413880,students:197,classes:9,average:23.0,grades:'א׳–ו׳'},
-{id:'ben-zvi',name:'בן צבי',stream:'ממלכתי',address:'אברהם הלל 10',code:412858,students:310,classes:15,average:23.9,grades:'א׳–ו׳'},
-{id:'maanit',name:'מענית',stream:'ממלכתי',address:'יוספטל 23',code:412122,students:288,classes:18,average:22.2,grades:'א׳–ו׳'},
-{id:'sharett',name:'שרת',stream:'ממלכתי',address:'שרת 1',code:413062,students:305,classes:14,average:25.5,grades:'א׳–ו׳'},
-{id:'haomanim',name:'האומנים',stream:'ממלכתי',address:'עוזי חיטמן 31',code:417196,students:308,classes:13,average:26.6,grades:'א׳–ו׳',notes:'בנתוני משרד החינוך שם המוסד הוא קרית האומנים.'},
-{id:'keshet',name:'קשת',stream:'ממלכתי',address:'יוסי בנאי 9',code:456921,students:467,classes:21,average:25.1,grades:'א׳–ו׳'},
-{id:'reut',name:'רעות',stream:'ממלכתי',address:'הפעמונית 1',code:415935,students:202,classes:12,average:21.8,grades:'א׳–ו׳',notes:'בנתוני משרד החינוך שם המוסד הוא רעות – גני דן.'},
-{id:'rona-ramon',name:'רונה רמון',stream:'ממלכתי',address:'רפאל איתן 3',code:482760,students:414,classes:16,average:25.9,grades:'א׳–ו׳'},
-{id:'bentzion-netanyahu',name:'בנציון נתניהו',stream:'ממלכתי דתי',address:'עוזי חיטמן 31',code:482380,students:305,classes:12,average:29.4,grades:'א׳–ד׳ לפי העירייה',characteristics:['בית ספר צומח'],notes:'העירייה מציגה את השם המקוצר בנציון ואת שכבות א׳–ד׳; הנתונים המספריים הם לשנת 2024.'},
-{id:'ariel',name:'אריאל',stream:'ממלכתי דתי',address:'בורוכוב 20',code:413534,students:435,classes:19,average:26.7,grades:'א׳–ו׳'},
-{id:'bar-ilan',name:'בר אילן',stream:'ממלכתי דתי',address:'ברזילי 3',code:412171,students:337,classes:18,average:23.8,grades:'א׳–ו׳',notes:'מומלץ לברר ישירות עם בית הספר את מבנה הכיתות לבנים ולבנות.'},
-{id:'uriel-eliraz-peretz',name:'אוריאל ואלירז פרץ',stream:'ממלכתי דתי',address:'מרדכי גור (לפי פרסומי תשפ״ז)',code:415281,students:238,classes:10,average:28.0,grades:'א׳–ו׳',notes:'ברשימה העירונית הישנה סמל 415281 מופיע בשם מרים פרץ ובכתובת יגאל ידין. משרד החינוך מזהה אותו כאוריאל ואלירז פרץ; כדאי לאמת את הכתובת לפני הגעה.'},
-{id:'harin',name:'הרי״ן',stream:'ממלכתי דתי',address:'בן גוריון 16',code:414060,students:580,classes:25,average:26.8,grades:'א׳–ו׳'},
+{id:'ofek',name:'אופק',stream:'ממלכתי',address:'שמואל תמיר 3',code:414847,students:402,classes:16,average:25.1,grades:'א׳–ו׳',coordinates:[31.9367190349414,34.8735317022928],coordinateAccuracy:'גבוהה מאוד'},
+{id:'ben-gurion',name:'בן גוריון',stream:'ממלכתי',address:'דוד רזיאל 32',code:413880,students:197,classes:9,average:23.0,grades:'א׳–ו׳',coordinates:[31.9214977067507,34.8604643562264],coordinateAccuracy:'גבוהה מאוד'},
+{id:'ben-zvi',name:'בן צבי',stream:'ממלכתי',address:'אברהם הלל 10',code:412858,students:310,classes:15,average:23.9,grades:'א׳–ו׳',coordinates:[31.9291572371615,34.8616096055665],coordinateAccuracy:'גבוהה מאוד'},
+{id:'maanit',name:'מענית',stream:'ממלכתי',address:'יוספטל 23',code:412122,students:288,classes:18,average:22.2,grades:'א׳–ו׳',coordinates:[31.9344627561461,34.8593268384397],coordinateAccuracy:'גבוהה מאוד'},
+{id:'sharett',name:'שרת',stream:'ממלכתי',address:'שרת 1',code:413062,students:305,classes:14,average:25.5,grades:'א׳–ו׳',coordinates:[31.933908737774,34.8546018646989],coordinateAccuracy:'גבוהה מאוד'},
+{id:'haomanim',name:'האומנים',stream:'ממלכתי',address:'עוזי חיטמן 31',code:417196,students:308,classes:13,average:26.6,grades:'א׳–ו׳',notes:'בנתוני משרד החינוך שם המוסד הוא קרית האומנים.',coordinates:[31.91802940402,34.8685869336117],coordinateAccuracy:'גבוהה מאוד'},
+{id:'keshet',name:'קשת',stream:'ממלכתי',address:'יוסי בנאי 9',code:456921,students:467,classes:21,average:25.1,grades:'א׳–ו׳',coordinates:[31.9144875207306,34.8694456312051],coordinateAccuracy:'גבוהה'},
+{id:'reut',name:'רעות',stream:'ממלכתי',address:'הפעמונית 1',code:415935,students:202,classes:12,average:21.8,grades:'א׳–ו׳',notes:'בנתוני משרד החינוך שם המוסד הוא רעות – גני דן.',coordinates:[31.9239854153595,34.8501455360693],coordinateAccuracy:'גבוהה מאוד'},
+{id:'rona-ramon',name:'רונה רמון',stream:'ממלכתי',address:'רפאל איתן 3',code:482760,students:414,classes:16,average:25.9,grades:'א׳–ו׳',coordinates:[31.9325948392201,34.8490973241322],coordinateAccuracy:'גבוהה מאוד'},
+{id:'bentzion-netanyahu',name:'בנציון נתניהו',stream:'ממלכתי דתי',address:'עוזי חיטמן 31',code:482380,students:305,classes:12,average:29.4,grades:'א׳–ד׳ לפי העירייה',characteristics:['בית ספר צומח'],notes:'העירייה מציגה את השם המקוצר בנציון ואת שכבות א׳–ד׳; הנתונים המספריים הם לשנת 2024.',coordinates:[31.91802940402,34.8685869336117],coordinateAccuracy:'גבוהה מאוד'},
+{id:'ariel',name:'אריאל',stream:'ממלכתי דתי',address:'בורוכוב 20',code:413534,students:435,classes:19,average:26.7,grades:'א׳–ו׳',coordinates:[31.9354680347257,34.8608987898241],coordinateAccuracy:'גבוהה מאוד'},
+{id:'bar-ilan',name:'בר אילן',stream:'ממלכתי דתי',address:'ברזילי 3',code:412171,students:337,classes:18,average:23.8,grades:'א׳–ו׳',notes:'מומלץ לברר ישירות עם בית הספר את מבנה הכיתות לבנים ולבנות.',coordinates:[31.9300298384798,34.8574928474703],coordinateAccuracy:'גבוהה מאוד'},
+{id:'uriel-eliraz-peretz',name:'אוריאל ואלירז פרץ',stream:'ממלכתי דתי',address:'מרדכי גור 1',code:415281,students:238,classes:10,average:28.0,grades:'א׳–ו׳',notes:'ברשימה העירונית הישנה סמל 415281 מופיע בשם מרים פרץ ובכתובת יגאל ידין. בפרסומי תשפ״ז ובנתוני משרד החינוך המוסד מזוהה כאוריאל ואלירז פרץ ברחוב מרדכי גור; כדאי לאמת את הכתובת לפני הגעה.'},
+{id:'harin',name:'הרי״ן',stream:'ממלכתי דתי',address:'בן גוריון 16',code:414060,students:580,classes:25,average:26.8,grades:'א׳–ו׳',coordinates:[31.9235772133267,34.8591031599871],coordinateAccuracy:'גבוהה מאוד'},
 {id:'tt-bar-ilan-raziel',name:'ת״ת בר אילן–רזיאל',stream:'ממלכתי דתי',address:'אברהם הלל 8, מתחם אדמונד לוי',code:484402,grades:'א׳–ו׳',gender:'בנים',characteristics:['תורני'],notes:'מופיע ברשימת עיריית רמלה כחמ״ד. לא נמצא נתון מספרי משויך למוסד במקור 2024 שנבדק.'},
 ];
 const beerRows:CityRow[]=[
-{id:'ilan-ramon',name:'אילן רמון',stream:'ממלכתי',address:'שלמה בן יוסף 18',code:415992,students:519,classes:21,average:27.4,grades:'א׳–ו׳',notes:'במאגר משרד החינוך 2024 מופיע בשם רמון.'},
-{id:'yitzhak-navon',name:'יצחק נבון',stream:'ממלכתי',code:484139,students:182,classes:8,average:24.7,characteristics:['שכונת כוכב הצפון']},
-{id:'bialik',name:'ביאליק',stream:'ממלכתי',address:'שדות 7',code:484196,students:149,classes:6,average:24.8,characteristics:['בית ספר צומח ברובע אקליפטוס'],extraSource:{label:'מוסדות חינוך ברובע אקליפטוס — עיריית באר יעקב',url:'https://b-y.org.il/%D7%9E%D7%95%D7%A1%D7%93%D7%95%D7%AA/'}},
-{id:'amirim',name:'אמירים',stream:'ממלכתי',address:'חושן 7',code:482661,students:731,classes:26,average:29.5},
-{id:'tzamarot',name:'צמרות',stream:'ממלכתי',address:'שוהם 15',code:416594,students:986,classes:31,average:32.4,characteristics:['דגש על תנועה וספורט']},
-{id:'bereshit',name:'בראשית',stream:'ממלכתי',code:482679,students:200,classes:9,average:22.2,characteristics:['מונטסורי']},
-{id:'tzaalon',name:'צאלון',stream:'ממלכתי',address:'הדקל 3',code:410100,students:352,classes:14,average:27.8},
-{id:'tlamim',name:'תלמים',stream:'ממלכתי',address:'לאה גולדברג 1',code:442491,students:529,classes:20,average:27.5},
-{id:'ilanot-rashbi',name:'אילנות רשב״י',stream:'ממלכתי דתי',address:'שוהם 7',code:482018,students:194,classes:8,average:24.3,extraSource:{label:'אילנות רשב״י — עיריית באר יעקב',url:'https://www.b-y.org.il/duplicated-1705480285/'}},
+{id:'ilan-ramon',name:'אילן רמון',stream:'ממלכתי',address:'שלמה בן יוסף 18',code:415992,students:519,classes:21,average:27.4,grades:'א׳–ו׳',notes:'במאגר משרד החינוך 2024 מופיע בשם רמון.',coordinates:[31.9398016928476,34.8368969485501],coordinateAccuracy:'גבוהה מאוד'},
+{id:'yitzhak-navon',name:'יצחק נבון',stream:'ממלכתי',address:'שביט 2',code:484139,students:182,classes:8,average:24.7,characteristics:['שכונת כוכב הצפון'],extraSource:{label:'בית הספר יצחק נבון — עיריית באר יעקב',url:'https://www.b-y.org.il/uploads/n/1768394449.5524.pdf'}},
+{id:'bialik',name:'ביאליק',stream:'ממלכתי',address:'שדות 7',code:484196,students:149,classes:6,average:24.8,characteristics:['בית ספר צומח ברובע אקליפטוס'],extraSource:{label:'מוסדות חינוך ברובע אקליפטוס — עיריית באר יעקב',url:'https://b-y.org.il/%D7%9E%D7%95%D7%A1%D7%93%D7%95%D7%AA/'},coordinates:[31.951771,34.843518],coordinateAccuracy:'מיקום מבנה, לא שער כניסה',coordinateSource:{label:'OpenStreetMap — מבנה בית ספר ביאליק',url:'https://www.openstreetmap.org/way/1238799891'}},
+{id:'amirim',name:'אמירים',stream:'ממלכתי',address:'חושן 7',code:482661,students:731,classes:26,average:29.5,coordinates:[31.94130359783,34.8293186417281],coordinateAccuracy:'גבוהה'},
+{id:'tzamarot',name:'צמרות',stream:'ממלכתי',address:'שוהם 15',code:416594,students:986,classes:31,average:32.4,characteristics:['דגש על תנועה וספורט'],coordinates:[31.9377423534987,34.8235694807277],coordinateAccuracy:'גבוהה מאוד'},
+{id:'bereshit',name:'בראשית',stream:'ממלכתי',code:482679,students:200,classes:9,average:22.2,characteristics:['מונטסורי'],coordinates:[31.9344473285424,34.8346234642362],coordinateAccuracy:'גבוהה'},
+{id:'tzaalon',name:'צאלון',stream:'ממלכתי',address:'הדקל 3',code:410100,students:352,classes:14,average:27.8,coordinates:[31.9382024196128,34.8327471339196],coordinateAccuracy:'גבוהה מאוד'},
+{id:'tlamim',name:'תלמים',stream:'ממלכתי',address:'לאה גולדברג 1',code:442491,students:529,classes:20,average:27.5,coordinates:[31.94203612935,34.8456343769025],coordinateAccuracy:'גבוהה מאוד'},
+{id:'ilanot-rashbi',name:'אילנות רשב״י',stream:'ממלכתי דתי',address:'שוהם 7',code:482018,students:194,classes:8,average:24.3,extraSource:{label:'אילנות רשב״י — עיריית באר יעקב',url:'https://www.b-y.org.il/duplicated-1705480285/'},coordinates:[31.9338738697131,34.8236700354159],coordinateAccuracy:'גבוהה מאוד'},
 {id:'shalhavot-chabad',name:'שלהבות חב״ד',stream:'ממלכתי דתי',code:480244,students:43,classes:2,average:21.5,characteristics:['חב״ד / תורני'],notes:'הסיווג הרשמי בנתוני 2024 הוא ממלכתי דתי ורשמי; האופי החב״די מצוין בנפרד.'},
 ];
 function addCityRows(city:City,rows:CityRow[],municipality:{label:string;url:string},data:(code:number)=>{label:string;url:string}){
   for(const row of rows)schools.push({
     id:`${city==='רמלה'?'ramla':'beer'}-${row.id}`,city,name:row.name,stream:row.stream,
+    latitude:row.coordinates?.[0],longitude:row.coordinates?.[1],coordinateAccuracy:row.coordinateAccuracy,
     address:row.address?`${row.address}, ${city}`:undefined,institutionCode:row.code,grades:row.grades,
     gender:row.gender,specialCharacteristics:row.characteristics,notes:row.notes,
     studentCount:row.students==null?undefined:{value:row.students,year:2024},
     classCount:row.classes==null?undefined:{value:row.classes,year:2024},
     averageClassSize:row.average==null?undefined:{value:row.average,year:2024},
     dataYear:row.students==null?undefined:2024,
-    sources:[municipality,...(row.code&&row.students!=null?[data(row.code)]:[]),...(row.extraSource?[row.extraSource]:[])],
+    sources:[municipality,...(row.code&&row.students!=null?[data(row.code)]:[]),...(row.coordinates?[row.coordinateSource||schoolCoordinateSource]:[]),...(row.extraSource?[row.extraSource]:[])],
   });
 }
 addCityRows('רמלה',ramlaRows,ramlaSource,ramlaData);
@@ -114,4 +116,3 @@ for(const school of schools){const entry=research[school.id];if(entry){school.po
 
 
 export const homeMarker = {lat:31.9427937,lng:34.8736398,label:'בעל התניא 1, לוד',source:{label:'OpenStreetMap — בניין בעל התניא 1',url:'https://www.openstreetmap.org/way/860709523'}};
-export const schoolCoordinateSource = {label:'משרד החינוך — קואורדינטות שערי כניסה למוסדות חינוך',url:'https://data.gov.il/he/datasets/ministry_of_education/coordinates'};
